@@ -1,5 +1,7 @@
 var altura = 0
 var largura = 0
+var vidas = 1
+
 function ajustaTamanhoPalcoJogo() {
     // Essa função pega a largura e altura da tela do usuario, a chamada dela também é realizada 
     //no evento onresize do body, então mesmo que o usuario redimensione a tela não havera estouro 
@@ -13,6 +15,21 @@ ajustaTamanhoPalcoJogo()
 
 
 function posicaoRandomica(){
+    // remover o mosquito anterior caso exista.... 
+    //na 1 execucao não existira mosquito ... ou caso o usuario clique no mosquito para mataló
+    if (document.getElementById('mosquito')) {
+        document.getElementById('mosquito').remove()
+
+        if (vidas > 3){
+            window.location.href = 'fim_de_jogo.html'
+        }else {
+            document.getElementById('v' + vidas).src = "imagens/coracao_vazio.png" 
+            vidas++
+        }
+        
+    }
+    
+    
     var posicaoX = Math.floor(Math.random() * largura) - 90
     var posicaoY = Math.floor(Math.random() * altura) - 90
     
@@ -31,6 +48,10 @@ function posicaoRandomica(){
     mosquito.style.left = posicaoX + 'px'
     mosquito.style.top = posicaoY + 'px'
     mosquito.style.position = 'absolute'
+    mosquito.id = 'mosquito'
+    mosquito.onclick = function() {
+        this.remove()
+    }
     
     document.body.appendChild(mosquito)
 
