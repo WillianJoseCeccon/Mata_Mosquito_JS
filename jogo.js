@@ -3,6 +3,25 @@ var largura = 0
 var vidas = 1
 var tempo = 10
 
+var criaMosquitoTempo = 1500
+
+var nivel = window.location.search // search retorna apenas o que existe após o ?do caminho da pagina. diferente do href que traz o caminho completo
+nivel = nivel.replace('?', '')
+
+if (nivel ==='normal') {
+    //1500
+    
+    criaMosquitoTempo = 1500
+} else if (nivel === 'dificil') {
+    //1000
+    
+    criaMosquitoTempo = 1000
+} else if (nivel === 'chucknorris') {
+    //750
+    
+    criaMosquitoTempo = 750
+}
+
 function ajustaTamanhoPalcoJogo() {
     // Essa função pega a largura e altura da tela do usuario, a chamada dela também é realizada 
     //no evento onresize do body, então mesmo que o usuario redimensione a tela não havera estouro 
