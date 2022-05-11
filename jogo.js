@@ -1,6 +1,7 @@
 var altura = 0
 var largura = 0
 var vidas = 1
+var tempo = 10
 
 function ajustaTamanhoPalcoJogo() {
     // Essa função pega a largura e altura da tela do usuario, a chamada dela também é realizada 
@@ -13,6 +14,19 @@ function ajustaTamanhoPalcoJogo() {
 
 ajustaTamanhoPalcoJogo()
 
+var cronometro = setInterval(function(){
+    tempo -= 1
+
+    if (tempo < 0) {
+        clearInterval(cronometro) // para de executar o interval para o cronometro nao ficar negativo
+        clearInterval(criaMosquito) // para de criar os mosquitos.
+        window.location.href = 'vitoria.html'
+        
+    } else {    
+        document.getElementById('cronometro').innerHTML = tempo    
+        } 
+    }, 1000)
+    
 
 function posicaoRandomica(){
     // remover o mosquito anterior caso exista.... 
